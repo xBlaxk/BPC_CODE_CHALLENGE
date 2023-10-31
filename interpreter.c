@@ -3,6 +3,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
+#define MAX_INPUT_SIZE 1024
+
 void* current_library = NULL; // Pointer to store the current library handle
 
 void load_library(const char* lib_name) {
