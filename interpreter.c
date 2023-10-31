@@ -87,4 +87,32 @@ int main(int argc, char* argv[]) {
             running = handle_command(command);
         }
     } else {
+        // Open the script file
+        FILE* script_file = fopen(argv[1], "r");
+        if (!script_file) {
+            perror("Error opening script file");
+            return 1;
+        }
+
+        // Assuming a maximum line length of 256
+        char line[256];
+        
+        // Loops through the whole file, one line per loop
+        while (fgets(line, sizeof(line), script_file)) {
+
+            // Remove newline character
+            char* modified_command = remove_newline(line);
+            // Removing newline character
+           
+            // Check for empty line or comment line
+            if (strlen(modified_command) <= 1 || strncmp(line, "#", 1) == 0) {
+                continue; // Skip this line and go to the next one
+            }
+                
+            handle_command(line);
+        }
+
+        fclose(script_file);
+        return 0;
+    }
 }
