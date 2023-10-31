@@ -62,3 +62,6 @@ bool handle_command(const char* command) {
 
     return true;
 }
+
+int main(int argc, char* argv[]) {
+}
