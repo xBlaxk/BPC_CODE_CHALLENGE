@@ -98,3 +98,17 @@ If you have separate C files that you want to compile as shared libraries, use t
     ```bash
     ./interpreter
     ```
+
+## **Testing Scripts**
+
+- `test.sc`: This script demonstrates the basic functionality by loading two libraries and calling functions from each, this also manage empty lines, comments and do some intentional errors to see how the error handling works.
+
+## **Libraries**
+
+- `lib1.c`: Contains functions `funcA` and `funcB` which prints a message that the function is being called
+- `lib2.c`: Contains functions `funcX` and `funcY` which prints a message that the function is being called
+
+## **Test Results**
+
+![testfile used to run the interpreter](./screenshots/test_file.png)
+![output of the interpreter with testfile and interactive mode](./screenshots/console_output.png)
