@@ -17,3 +17,20 @@ void load_library(const char* lib_name) {
         return;
     }
 }
+
+void call_function(const char* func_name) {
+    if (!current_library) {
+        printf("No library loaded.\n");
+        return;
+    }
+    
+    void (*func)() = dlsym(current_library, func_name);
+    const char* dlsym_error = dlerror();
+
+    if (dlsym_error) {
+        printf("Error calling function: %s\n", dlsym_error);
+        return;
+    }
+
+    func(); // Call the function
+}
