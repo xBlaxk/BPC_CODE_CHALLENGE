@@ -43,3 +43,22 @@ char* remove_newline(char* str) {
     return str;
 }
 
+bool handle_command(const char* command) {
+    // Process the command using your interpreter logic.
+    // If you detect an "exit" or "quit" command, return false.
+    // Otherwise, return true.
+
+    if (strcmp(command, "exit") == 0 || strcmp(command, "quit") == 0) {
+        return false;
+    }
+
+    if (strncmp(command, "use ", 4) == 0) {
+        load_library(command + 4); // Skip the "use " part
+    } else if (strncmp(command, "call ", 5) == 0) {
+        call_function(command + 5); // Skip the "call " part
+    } else {
+        fprintf(stderr, "Syntax error: Unrecognized command or line format: %s\n", command);
+    }
+
+    return true;
+}
