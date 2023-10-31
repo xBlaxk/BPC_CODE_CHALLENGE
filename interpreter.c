@@ -64,4 +64,27 @@ bool handle_command(const char* command) {
 }
 
 int main(int argc, char* argv[]) {
+    if (argc == 1) {
+        printf("Entering interactive mode. Type 'exit' or 'quit' to leave.\n");
+
+        char command[MAX_INPUT_SIZE];
+        bool running = true;
+
+        while (running) {
+            printf("> ");  // prompt
+            if (fgets(command, MAX_INPUT_SIZE, stdin) == NULL) {
+                break;  // exit on EOF
+            }
+
+            // Remove newline character
+            char* modified_command = remove_newline(command);
+            
+            // Check for empty line or comment line
+            if (strlen(modified_command) <= 1 || strncmp(modified_command, "#", 1) == 0) {
+                continue; // Skip this line and go to the next one
+            }
+
+            running = handle_command(command);
+        }
+    } else {
 }
